@@ -40,7 +40,7 @@ int main(){
 	}
 	
 	// primer paso
-	for(double t = 0; t<2000; t+=1){
+	for(double t = 0; t<5000; t+=1){
 		for(int x=1; x<N-1; x++){
 			for(int y=1; y<N-1; y++){
 				presente[x][y]   = pasado[x][y]+ v/(pow(dx,2))*(pasado[x+1][y]+pasado[x][y+1]-4*pasado[x][y]+pasado[x-1][y]+pasado[x][y+1]);		

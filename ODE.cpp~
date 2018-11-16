@@ -94,7 +94,7 @@ int main(){
 	outfile.close();
 
 	int angulos[7] = { 10, 20, 30, 40, 50, 60, 70 }; 
-	ofstream outfile2("datosangulos.txt");
+
 	for(int i=0; i<7; i++){
 		double angulo = angulos[i];
 		double h = 0.1;
@@ -110,10 +110,10 @@ int main(){
 		double kx3, ky3, kdx3, kdy3;
 		double kx4, ky4, kdx4, kdy4;
 	
-		
+		ofstream outfile2("datosangulos.txt");
 		while(y>=0){
-			outfile2 << t <<" " << x << " " << y << " " << vx << " " << vy<<endl;		
-			cout     << t <<" " << x << " " << y << " " << vx << " " << vy<<endl;
+			outfile2 << t <<" " << x << " " << y << " " << vx << " " << vy<<flush;		
+			cout << t <<" " << x << " " << y << " " << vx << " " << vy<<flush;
 		
 			kx1  =   dxdt(t,x,vx);
 			ky1  =   dydt(t,x,vy);
@@ -140,7 +140,11 @@ int main(){
 			 y =  y + ( ky1 +  2*ky2 +  2*ky3 +  ky4)/6.;
 			vx = vx + (kdx1 + 2*kdx2 + 2*kdx3 + kdx4)/6.;
 			vy = vy + (kdy1 + 2*kdy2 + 2*kdy3 + kdy4)/6.;
-					
+		
+		
+		
+		
+				
 		}
 
 	
