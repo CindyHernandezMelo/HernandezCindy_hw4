@@ -10,31 +10,64 @@ int glob;
 #define pi  3.14159
 #define k   1.62 // m^2/s
 #define cp  820  // 820J/(Kg*C)
-#define rho 2710 // 2710 kg/m^3
+#define rho 271.0 // 2710 kg/m^3
 
 int main(){
 	double v  = k/(cp*rho);
 	int    N  = 50;
 	double d  = 10;
-	double dx = 1/100;
-	double dy = 1/100;
-	double dt = 0.5*dx/v;
+	double dx = 0.01;
+	double dy = 0.01;
+	double dt = 0.2*dx/v;
 	cout << v << endl;
 	cout << dt << endl;
+	cout << v/(dt*pow(dx,2)) << endl;
 	
-	double R0[N][N];
+	double pasado[N][N];
+	double presente[N][N];
+	double futuro[N][N];
+	
 	
 	for(int x=0; x<N; x++){
 		for(int y=0; y<N; y++){
-			if((pow(x-N/2,2)+pow(y-N/2,2))<25){
-				R0[x][y] = 100;	
+			if((pow(x-N/2,2)+pow(y-N/2,2))<pow(d/2,2)){
+				pasado[x][y] = 100;	
 			}
 			else {
-				R0[x][y] = 10;
+				pasado[x][y] = 10;
 			}
-			//cout<<R0[x][y]<<" "; 
 		}
-		//cout<<endl; 
+	}
+	
+	// primer paso
+	for(double t = 0; t<20000000; t+=dt){
+		for(int x=1; x<N-1; x++){
+			for(int y=1; y<N-1; y++){
+				presente[x][y]   = pasado[x][y]+ v/(dt*pow(dx,2))*(pasado[x+1][y]+pasado[x][y+1]-4*pasado[x][y]+pasado[x-1][y]+pasado[x][y+1]);		
+				presente[0][y]   = 10;
+				presente[50-1][y]= 10;
+		}
+			presente[x][0]   = 10;
+			presente[x][50-1]= 10;		 
+	}	
+		for(int x=0; x<N; x++){
+			for(int y=0; y<N; y++){
+				pasado[x][y] = presente[x][y];	
+				
+				//cout<<pasado[x][y]<<" "; 
+		}
+		//cout<<endl;
+		 
+	}
+		
+	}
+		for(int x=0; x<N; x++){
+			for(int y=0; y<N; y++){	
+				
+				cout<<pasado[x][y]<<","; 
+		}
+		cout<<endl;
+		 
 	}
 	return 0;
 }
