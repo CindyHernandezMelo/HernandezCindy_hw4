@@ -40,7 +40,7 @@ double d2ydt2(double t, double y, double xprima, double yprima, double a){
 int main(){
 	
 	double angulo = 45;
-	double h = 0.005;
+	double h = 0.007;
 
 	double t  = 0;
 	double x  = 0;
@@ -52,12 +52,10 @@ int main(){
 	double kx2, ky2, kdx2, kdy2;
 	double kx3, ky3, kdx3, kdy3;
 	double kx4, ky4, kdx4, kdy4;
-	cout<< pow(pow(vx,2)+pow(vy,2),0.5)<<endl;
 	ofstream outfile("datos45.txt");
 	while(y>=0){
 
 		outfile << t <<" " << x << " " << y << " " << vx << " " << vy <<endl;		
-		cout <<    t <<" " << x << " " << y << " " << vx << " " << vy <<endl;
 		
 		kx1  =   dxdt(t,x,vx);
 		ky1  =   dydt(t,y,vy);
@@ -87,6 +85,7 @@ int main(){
 		vy = vy + h*(kdy1 + 2*kdy2 + 2*kdy3 + kdy4)/6.;		
 				
 	}
+	cout<<"La distancia que recorre es: "<< x <<endl;
 	outfile.close();
 
 	int angulos[7] = { 10, 20, 30, 40, 50, 60, 70 }; 
@@ -94,7 +93,6 @@ int main(){
 	for(int i=0; i<7; i++){
 		
 		double angulo = angulos[i];
-		double h = 0.005;
 
 		double t  = 0;
 		double x  = 0;
@@ -109,7 +107,6 @@ int main(){
 			
 		while(y>=0){
 			outfile2 << t <<" " << x << " " << y << " " << vx << " " << vy<<endl;		
-			cout     << t <<" " << x << " " << y << " " << vx << " " << vy<<endl;
 		
 		kx1  =   dxdt(t,x,vx);
 		ky1  =   dydt(t,y,vy);
@@ -140,7 +137,7 @@ int main(){
 		}
 	
 	}
-
+	cout<<"El angulo que mayor distancia recorre es el de 20°"<<endl;
 	outfile2.close();
 
 	return 0;
