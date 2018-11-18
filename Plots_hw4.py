@@ -1,10 +1,13 @@
 import numpy as np
 import matplotlib.pylab as plt
+from mpl_toolkits.mplot3d import axes3d, Axes3D
 
 proyectil45 = np.genfromtxt('datos45.txt')
 
 plt.figure()
-plt.scatter(proyectil45[:,1], proyectil45[:,2])
+plt.plot(proyectil45[:,1], proyectil45[:,2])
+plt.xlabel('Trayectoria (m)')
+plt.ylabel('Altura (m)')
 plt.savefig('proyectil45.pdf')
 
 
@@ -12,13 +15,40 @@ datosproyectiles = np.genfromtxt('datosangulos.txt')
 corte = np.where(datosproyectiles[:,0]==0)
 
 plt.figure()
-plt.plot(datosproyectiles[corte[0][0]:corte[0][1],1], datosproyectiles[corte[0][0]:corte[0][1],2],label = '10 grados')
-plt.plot(datosproyectiles[corte[0][1]:corte[0][2],1], datosproyectiles[corte[0][1]:corte[0][2],2],label = '20 grados')
-plt.plot(datosproyectiles[corte[0][2]:corte[0][3],1], datosproyectiles[corte[0][2]:corte[0][3],2],label = '30 grados')
-plt.plot(datosproyectiles[corte[0][3]:corte[0][4],1], datosproyectiles[corte[0][3]:corte[0][4],2],label = '40 grados')
-plt.plot(datosproyectiles[corte[0][4]:corte[0][5],1], datosproyectiles[corte[0][4]:corte[0][5],2],label = '50 grados')
-plt.plot(datosproyectiles[corte[0][5]:corte[0][6],1], datosproyectiles[corte[0][5]:corte[0][6],2],label = '60 grados')
-plt.plot(datosproyectiles[corte[0][6]:,1]           , datosproyectiles[corte[0][6]:,2]           ,label = '70 grados')
 
+for i in range(6):
+    plt.plot(datosproyectiles[corte[0][i]:corte[0][i+1],1], datosproyectiles[corte[0][i]:corte[0][i+1],2],label = '%d°'%((i+1)*10))
+i = 6;
+plt.plot(datosproyectiles[corte[0][i]:,1], datosproyectiles[corte[0][i]:,2],label = '%d°'%((i+1)*10))
+plt.xlabel('Trayectoria (m)')
+plt.ylabel('Altura (m)')
+plt.savefig('proyectilangulos.pdf')
 plt.legend()
-plt.show()
+
+nombrespromedio = ['promediofija', 'promediolibre', 'promedioperiodica']
+nombresplacas   = ['placafija'   , 'placalibre'   , 'placaperiodica'   ]
+estados         = ['inicial', 'intermedio1', 'intermedio2', 'final']
+N = 50
+
+for i in range(3):
+    promedio = np.genfromtxt('%s.txt'%nombrespromedio[i])
+    plt.figure()
+    plt.plot(promedio[:,0],promedio[:,1])
+    plt.xlabel('Tiempo (s)')
+    plt.ylabel('Temperatura (°C)')
+    plt.title(nombrespromedio[i])
+    plt.savefig('%s.pdf'%nombrespromedio[i])
+
+    x,y = np.meshgrid(np.linspace(1,0.5,N),np.linspace(1,0.5,N))
+    datosplaca = np.genfromtxt('%s.txt'%nombresplacas[i])
+    for j in range(4):
+        
+        z = datosplaca[j*N:(j+1)*N,:]
+        fig = plt.figure()
+        ax = Axes3D(fig) #<-- Note the difference from your original code...
+        ax.plot_surface(x, y, z, cmap='hot' )
+        #ax.set_zlim(10, 100)
+        plt.title('%s %s'%(nombresplacas[i],estados[j]))
+        plt.savefig('%s%s.pdf'%(nombresplacas[i],estados[j]))
+
+
