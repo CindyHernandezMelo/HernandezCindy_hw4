@@ -50,6 +50,5 @@ for i in range(3):
 	ax.set_xlabel('Distancia (m)')
 	ax.set_ylabel('Distancia (m)')
 	ax.set_zlabel('Temperatura (C)')
-	ax.set_zlim(0,100)	
         plt.savefig('%s%s.png'%(nombresplacas[i],estados[j]))
 

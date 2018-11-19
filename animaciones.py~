@@ -19,7 +19,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ims = []
 for i in range(frn):
-    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='gist_ncar' , rstride=1, cstride=1)
+    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='prism' , rstride=1, cstride=1)
     ims.append([sf])
 
 ax.set_zlim(0,100)
@@ -42,7 +42,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ims = []
 for i in range(frn):
-    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='gist_ncar' , rstride=1, cstride=1)
+    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='prism' , rstride=1, cstride=1)
     ims.append([sf])
 
 ax.set_zlim(0,100)
@@ -66,7 +66,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ims = []
 for i in range(frn):
-    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='gist_ncar' , rstride=1, cstride=1)
+    sf = ax.plot_surface(x, y, zarray[:,:,i], cmap='prism' , rstride=1, cstride=1)
     ims.append([sf])
 
 ax.set_zlim(0,100)

@@ -20,7 +20,7 @@ int main(){
 	double dy = 50*0.01/N;
 	double dt = 0.001*dx/v;
 	int numer = 100;
-	double sensibilidad = pow(10,-3);
+	double sensibilidad = pow(10,-2);
 
 	double pasado[N][N];
 	double presente[N][N];

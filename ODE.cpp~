@@ -29,11 +29,11 @@ double dydt(double t, double y, double yprima){
 }
 
 double d2xdt2(double t, double x, double xprima, double yprima, double a){
-	return  0-c*pow(pow(xprima,2)+pow(yprima,2),0.5)*xprima/m;	
+	return  0; //-c*pow(pow(xprima,2)+pow(yprima,2),0.5)*xprima/m;	
 	}
 
 double d2ydt2(double t, double y, double xprima, double yprima, double a){
-	return -g-c*pow(pow(xprima,2)+pow(yprima,2),0.5)*yprima/m;
+	return -g;// -c*pow(pow(xprima,2)+pow(yprima,2),0.5)*yprima/m;
 	
 }
 

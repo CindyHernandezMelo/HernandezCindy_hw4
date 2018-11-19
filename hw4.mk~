@@ -1,4 +1,4 @@
-Resultados_hw4.pdf: proyectil45.png proyectilangulos.png promediofija.png promediolibre.png promedioperiodica.png placafijainicial.png placafijaintermedio1.png placafijaintermedio2.png placafijafinal.png placalibreinicial.png placalibreintermedio1.png placalibreintermedio2.png placalibrefinal.png placaperiodicainicial.png placaperiodicaintermedio1.png placaperiodicaintermedio2.png placaperiodicafinal.png Resultados_hw4.tex animaciones.py
+resultados.pdf: proyectil45.png proyectilangulos.png promediofija.png promediolibre.png promedioperiodica.png placafijainicial.png placafijaintermedio1.png placafijaintermedio2.png placafijafinal.png placalibreinicial.png placalibreintermedio1.png placalibreintermedio2.png placalibrefinal.png placaperiodicainicial.png placaperiodicaintermedio1.png placaperiodicaintermedio2.png placaperiodicafinal.png Resultados_hw4.tex animaciones.py
 	pdflatex Resultados_hw4.tex
 	python animaciones.py 
 	rm *.png
