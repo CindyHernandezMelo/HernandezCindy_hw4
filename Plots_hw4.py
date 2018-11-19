@@ -8,7 +8,7 @@ plt.figure()
 plt.plot(proyectil45[:,1], proyectil45[:,2])
 plt.xlabel('Trayectoria (m)')
 plt.ylabel('Altura (m)')
-plt.savefig('proyectil45.pdf')
+plt.savefig('proyectil45.png')
 
 
 datosproyectiles = np.genfromtxt('datosangulos.txt')
@@ -22,8 +22,8 @@ i = 6;
 plt.plot(datosproyectiles[corte[0][i]:,1], datosproyectiles[corte[0][i]:,2],label = '%d°'%((i+1)*10))
 plt.xlabel('Trayectoria (m)')
 plt.ylabel('Altura (m)')
-plt.savefig('proyectilangulos.pdf')
 plt.legend()
+plt.savefig('proyectilangulos.png')
 
 nombrespromedio = ['promediofija', 'promediolibre', 'promedioperiodica']
 nombresplacas   = ['placafija'   , 'placalibre'   , 'placaperiodica'   ]
@@ -36,8 +36,8 @@ for i in range(3):
     plt.plot(promedio[:,0],promedio[:,1])
     plt.xlabel('Tiempo (s)')
     plt.ylabel('Temperatura (°C)')
-    plt.title(nombrespromedio[i])
-    plt.savefig('%s.pdf'%nombrespromedio[i])
+    #plt.title(nombrespromedio[i])
+    plt.savefig('%s.png'%nombrespromedio[i])
 
     x,y = np.meshgrid(np.linspace(1,0.5,N),np.linspace(1,0.5,N))
     datosplaca = np.genfromtxt('%s.txt'%nombresplacas[i])
@@ -48,7 +48,6 @@ for i in range(3):
         ax = Axes3D(fig) #<-- Note the difference from your original code...
         ax.plot_surface(x, y, z, cmap='hot' )
         #ax.set_zlim(10, 100)
-        plt.title('%s %s'%(nombresplacas[i],estados[j]))
-        plt.savefig('%s%s.pdf'%(nombresplacas[i],estados[j]))
-
+        #plt.title('%s %s'%(nombresplacas[i],estados[j]))
+        plt.savefig('%s%s.png'%(nombresplacas[i],estados[j]))
 
